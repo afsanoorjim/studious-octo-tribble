@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# Create your views here.
+from .models import Product
 
 def landing_page(request):
-    return render(request, 'landing_page.html')
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'landing_page.html', context)
 
 def signup(request):
     return HttpResponse("This is Signup Page")
